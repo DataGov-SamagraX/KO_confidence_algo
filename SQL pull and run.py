@@ -107,9 +107,7 @@ def get_final_confidence(data,list_of_cols, column_to_check_confidence,t_w ,id_c
     Returned values: 
     data  : Table which returns the final confidence scores for the required columns    
     """
-    
-    
-    
+        
     train_data =  data[list_of_cols].copy()
     
     column_matching_df =  train_data.copy()
@@ -162,7 +160,8 @@ for table_no in codes_df_run.index:
     no_cols =  len(list_of_cols)
     t_w = np.repeat(0.5,no_cols)
     id_colname = 'id'
-    t_w_df,train_data_confidence = carry_out_iterations( df,list_of_cols,t_w,id_colname)
+    gamma = 1
+    t_w_df,train_data_confidence = carry_out_iterations( df,list_of_cols,t_w,id_colname, gamma)
     
     column_to_check_confidence = 'Krushak_Odisha'
 
