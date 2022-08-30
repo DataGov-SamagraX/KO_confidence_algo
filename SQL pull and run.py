@@ -1,26 +1,65 @@
 import numpy as np
 import pandas as pd
 import mysql.connector
+import os
+from dotenv import load_dotenv
+from pathlib import Path
 
+dotenv_path = Path('.env')
+load_dotenv(dotenv_path=dotenv_path)
 
 ## locations where the files with confidence scores need to be saved
-save_location =  '/confidence_files/'
+save_location =  os.getenv('save_location')
 
 ## csv file with the SQL code repo
-sql_repo_csv_location =  'sql_code_repo.csv'
-
-## connecting to the DB
-mydb = mysql.connector.connect(host = "10.150.224.4",user = "dss_application",password="",database= "dss_production")
+sql_repo_csv_location =  os.getenv('save_location')
 
 ## setting the maximum confidence a source can have: 
-maximum_confidence_value= 0.975 
+maximum_confidence_value = float(os.getenv('maximum_confidence_value'))
 
 ## setting  the maximum number of iterations in the algo: 
-maximum_number_of_iterations =  100 
+maximum_number_of_iterations =  float(os.getenv('maximum_number_of_iterations'))
 
 ## setting the minimum differnce in the trustworthiness scores to be reached to end the algo
-minimum_absolute_difference =  0.001
+minimum_absolute_difference =  float(os.getenv('minimum_absolute_difference'))
 
+
+## setting the variables for connecting to the DB:
+
+## hostname 
+host = os.getenv('host')
+
+##username
+user = os.getenv('user')
+
+##password
+password=os.getenv('password')
+
+
+##DB name
+database= os.getenv('database')
+
+
+## connecting to the DB
+mydb = mysql.connector.connect(host = host, user = user , password= password , database= database )
+
+save_location =  os.getenv('save_location')
+
+sql_repo_csv_location =  os.getenv('save_location')
+
+maximum_confidence_value = float(os.getenv('maximum_confidence_value'))
+
+maximum_number_of_iterations =  float(os.getenv('maximum_number_of_iterations'))
+
+minimum_absolute_difference =  float(os.getenv('minimum_absolute_difference'))
+
+host = os.getenv('host')
+
+user = os.getenv('user')
+
+password=os.getenv('password')
+
+database= os.getenv('database')
 
 ## Function to carry out the iterations of confidence algo 
 def carry_out_iterations( data,list_of_cols,t_w,id_colname,gamma): 
