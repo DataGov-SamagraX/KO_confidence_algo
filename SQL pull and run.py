@@ -8,6 +8,8 @@ from pathlib import Path
 dotenv_path = Path('.env')
 load_dotenv(dotenv_path=dotenv_path)
 
+#%%  Declaring all the variables
+
 ## locations where the files with confidence scores need to be saved
 save_location =  os.getenv('save_location')
 
@@ -23,9 +25,7 @@ maximum_number_of_iterations =  float(os.getenv('maximum_number_of_iterations'))
 ## setting the minimum differnce in the trustworthiness scores to be reached to end the algo
 minimum_absolute_difference =  float(os.getenv('minimum_absolute_difference'))
 
-
-## setting the variables for connecting to the DB:
-
+# setting the variables for connecting to the DB:
 ## hostname 
 host = os.getenv('host')
 
@@ -35,31 +35,16 @@ user = os.getenv('user')
 ##password
 password=os.getenv('password')
 
-
 ##DB name
 database= os.getenv('database')
 
+#%%
 
 ## connecting to the DB
 mydb = mysql.connector.connect(host = host, user = user , password= password , database= database )
 
-save_location =  os.getenv('save_location')
 
-sql_repo_csv_location =  os.getenv('save_location')
-
-maximum_confidence_value = float(os.getenv('maximum_confidence_value'))
-
-maximum_number_of_iterations =  float(os.getenv('maximum_number_of_iterations'))
-
-minimum_absolute_difference =  float(os.getenv('minimum_absolute_difference'))
-
-host = os.getenv('host')
-
-user = os.getenv('user')
-
-password=os.getenv('password')
-
-database= os.getenv('database')
+#%% Pre-defined variables
 
 ## Function to carry out the iterations of confidence algo 
 def carry_out_iterations( data,list_of_cols,t_w,id_colname,gamma): 
@@ -133,6 +118,8 @@ def carry_out_iterations( data,list_of_cols,t_w,id_colname,gamma):
     
     return(t_w_df,train_data_confidence )
 
+
+## Function to get the final confidence values from the source trustworthiness values 
 def get_final_confidence(data,list_of_cols, column_to_check_confidence,t_w ,id_colname):
     
     """
@@ -179,10 +166,13 @@ def get_final_confidence(data,list_of_cols, column_to_check_confidence,t_w ,id_c
 
     return(data)
 
+
+#%% 
+
+
 ## reading the table with the SQL queries for downloading necessary tables 
 codes_df = pd.read_csv("sql_code_repo.csv")
 codes_df_run = codes_df.loc[codes_df.Multiple_confidence_columns == 1,: ]
-
 
 for table_no in codes_df_run.index:
     print('Table current :',  table_no , '\n')

@@ -1,0 +1,12 @@
+columns:
+- plot_no
+- khata_no
+
+sample_results:
+- 'sample_results.csv'
+
+confidence_values_folder:
+- 'confidence_results/'
+
+sql_repo_csv_location:
+- 'sql_repo_csv_location.csv'
