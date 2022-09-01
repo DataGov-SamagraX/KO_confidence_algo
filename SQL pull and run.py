@@ -160,7 +160,9 @@ def get_final_confidence(data,list_of_cols, column_to_check_confidence,t_w ,id_c
     for col_ii in range(0,column_matching_df.shape[1]):
         column_matching_df.iloc[:,col_ii] = column_matching_df.iloc[:,col_ii] * tau_w[col_ii]
 
-    final_conf_scores= np.where(pd.isnull(current_source),np.nan,1/(1 + np.exp(-column_matching_df.sum(axis=1))))
+    final_conf_scores= np.where(pd.isnull(current_source),np.nan,1/(1 + np.exp( -1 * gamma * ( column_matching_df.sum(axis=1)  ) )))
+    
+    
 
     data['final_confidence'] = final_conf_scores
 
@@ -184,6 +186,9 @@ for table_no in codes_df_run.index:
     
     df = pd.read_sql(string ,con =mydb)
     
+    table_name_str  = codes_df.loc[table_no,'Field Name']
+    df.to_csv( 'data' + table_name_str+str(table_no)+'.csv', encoding = "utf-8")
+    
     df['id'] = df.index
     df['Krushak_Odisha'] = df.field.combine_first(df.self)
     no_cols =  len(list_of_cols)
@@ -195,11 +200,7 @@ for table_no in codes_df_run.index:
     column_to_check_confidence = 'Krushak_Odisha'
 
     data_copy = get_final_confidence(df, column_to_check_confidence ,train_data_confidence ,id_colname)
-    df = pd.read_sql(string ,con =mydb)
-    table_name_str  = codes_df.loc[table_no,'Field Name']
-    df.to_csv( 'data' + table_name_str+str(table_no)+'.csv', encoding = "utf-8")
     
-    conf_table = data_copy[['Krushak_Odisha','int_krushk_id'
-,'final_confidence']]
+    conf_table = data_copy[['Krushak_Odisha','int_krushk_id','final_confidence']]
     
     conf_table.to_csv( save_location + table_name_str+str(table_no)+'.csv', encoding = "utf-8")

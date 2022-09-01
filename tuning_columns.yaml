@@ -1,12 +1,11 @@
 columns:
-- plot_no
-- khata_no
+- 'plot #'
+- 'khata #'
 
-sample_results:
-- 'sample_results.csv'
+sample_results: 'D:/Samagra/KO/Joining confidence/sample/KO_conf_results_final.csv'
 
-confidence_values_folder:
-- 'confidence_results/'
+confidence_values_folder: 'D:/Samagra/KO/gautam_data/test_conf/'
 
-sql_repo_csv_location:
-- 'sql_repo_csv_location.csv'
+sql_repo_csv_location: 'sql_repo_csv_location.csv'
+
+sample_matching_file_location:  'D:/Samagra/KO/Confidence algo/confidence matching1.csv'
