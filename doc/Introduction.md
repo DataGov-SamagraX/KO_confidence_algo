@@ -27,49 +27,49 @@ The algorithm is based on these 4 premises:
 
 Defining some terms in the formulae:
 
-Object: An object is whatever the informations is being record about - in our case each farmer record existing in KO
+**Object**: An object is whatever the informations is being record about - in our case each farmer record existing in KO
 
-Property:  Property of an object is the characteristic that we have values for
+**Property:**  Property of an object is the characteristic that we have values for
 Ex: Farmer Name, Primary mobile number, Landholding size, etc. are properties in KO of a given object ‘Farmer1’ 
 
-f: Fact:  Values provided by a source for the property of an object. 
+**f: Fact:**  Values provided by a source for the property of an object. 
 Ex.: Aman, Bob, Chandru etc are facts from the ‘Farmer Name’ property of object ‘Farmer1’
 
-f’: Other Facts: Facts apart from the Krushak Odisha value for which the confidence level is being calculated
+**f’: Other Facts:** Facts apart from the Krushak Odisha value for which the confidence level is being calculated
 Ex.: Land record area value in PMFBY is the other fact for KO’s ‘Farmer’s Area Under Cultivation’ property
 
-t(w) : Trustworthiness of the source:  This determines the reliability of one property of a particular source. 
+**t(w) : Trustworthiness of the source:**  This determines the reliability of one property of a particular source. 
 Ex: t(w) of Aadhar for names is 0.99, t(w) of source A for names is 0.8, t(w) for Aadhar for age is 0.97
 
-w: Source:   Each attestation source from which fact f is derived
+**w: Source:**   Each attestation source from which fact f is derived
 Ex.: PMFBY is a source for fact ‘Land record area value’
 
-W: List of all sources: List of all attestation sources available for a property
+**W: List of all sources:** List of all attestation sources available for a property
 Ex.: PMFBY,Seed Supply, P-PAS, M-PAS are sources W for fact KO’s Kharif Crops property
 
-s(f) : Unadjusted confidence: Confidence of a fact f considering only those sources which have the fact 
+**s(f) : Unadjusted confidence:** Confidence of a fact f considering only those sources which have the fact 
 
-s*(f) : Adjusted confidence: Confidence of a fact f adjusted for other facts f’
+**s*(f) : Adjusted confidence:** Confidence of a fact f adjusted for other facts f’
 
-s0*(f):  Scaled Adjusted Confidence:  Adjusted confidence of fact that has been scaled logistically (from 0-1). This is the final score that will be used as the confidence level
+**s0*(f):  Scaled Adjusted Confidence:**  Adjusted confidence of fact that has been scaled logistically (from 0-1). This is the final score that will be used as the confidence level
 
-𝛕(w) : Trustworthiness score of the source:  This is a log transformed version of trustworthiness t(w) of the source w to account for underflow. Underflow is when extremely low values are created by the multiplication of the low(1-t(w)) values with each other. The extremely low values are often rounded off to zero by programs while calculating leading to unexpected errors
+**𝛕(w) : Trustworthiness score of the source:**  This is a log transformed version of trustworthiness t(w) of the source w to account for underflow. Underflow is when extremely low values are created by the multiplication of the low(1-t(w)) values with each other. The extremely low values are often rounded off to zero by programs while calculating leading to unexpected errors
 
 E.g, If we have 10 matching sources and their t(w) is 0.99, then the product of (1-t(w)) will become 1-10
 
-			(1)	
+$$\tau(w)=-\ln (1-t(w))$$
 
-𝞂(f):  Unadjusted confidence score for a fact:  This is a logarithmic transformed version of unadjusted confidence s(f) again to prevent underflow
+**𝞂(f):  Unadjusted confidence score for a fact:**  This is a logarithmic transformed version of unadjusted confidence s(f) again to prevent underflow
  				(2)	
 
-𝞂*(f):  Adjusted confidence score for a fact:  This is a logarithmic transformed version of adjusted confidence s*(f) to prevent underflow
+**𝞂*(f):  Adjusted confidence score for a fact:**  This is a logarithmic transformed version of adjusted confidence s*(f) to prevent underflow
 
 			(3)	
 
 
-  Ɣ : Damping factor: This is a parameter to be provided to the model to account for lack of independence amongst sources. We will be considering its value as 1 for now, assuming that the attestation sources are completely independent of each other. In case of any interdependence between two or more attestation sources, we can check for various parameters of  Ɣ (from 0-1)
+**Ɣ : Damping factor:** This is a parameter to be provided to the model to account for lack of independence amongst sources. We will be considering its value as 1 for now, assuming that the attestation sources are completely independent of each other. In case of any interdependence between two or more attestation sources, we can check for various parameters of  Ɣ (from 0-1)
 
-imp(f’→f):  Impact of f’ on f:  This is the effect of other facts f’ on fact f. In our case, we can define it as -1 all the time, assuming that we require all facts to exactly match with each other. This measure can be improved to use as a similarity score scaled from 1 to -1.  
+**imp(f’→f):  Impact of f’ on f:**  This is the effect of other facts f’ on fact f. In our case, we can define it as -1 all the time, assuming that we require all facts to exactly match with each other. This measure can be improved to use as a similarity score scaled from 1 to -1.  
 Ex: if we have Krushak Odisha value as Aman and Source A fact ‘Amana’, impact of fact ‘Amana’ on ‘Aman’ can be -0.2 and impact of ‘Bob’ on ‘Aman’ can be -1. Hence Krushak Odisha value of ‘Aman’ will have a higher confidence score if source A says ‘Amana’ rather ‘Bob’
 
 
