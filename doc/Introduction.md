@@ -51,7 +51,7 @@ Ex.: PMFBY,Seed Supply, P-PAS, M-PAS are sources W for fact KO’s Kharif Crops 
 
 **s*(f) : Adjusted confidence:** Confidence of a fact f adjusted for other facts f’
 
-**s0*(f):  Scaled Adjusted Confidence:**  Adjusted confidence of fact that has been scaled logistically (from 0-1). This is the final score that will be used as the confidence level
+<strong>s0* (f):  Scaled Adjusted Confidence:</strong>  Adjusted confidence of fact that has been scaled logistically (from 0-1). This is the final score that will be used as the confidence level
 
 **𝛕(w) : Trustworthiness score of the source:**  This is a log transformed version of trustworthiness t(w) of the source w to account for underflow. Underflow is when extremely low values are created by the multiplication of the low(1-t(w)) values with each other. The extremely low values are often rounded off to zero by programs while calculating leading to unexpected errors
 
