@@ -315,8 +315,7 @@ style="width:5.76042in;height:2.01042in" />
 
 - The Truth Finder algorithm is a well-known research paper cited extensively in the data science world [<sup><u>\[1\]</u></sup>](https://ieeexplore.ieee.org/document/4415269/citations?tabFilter=papers#anchor-paper-citations-nonieee) including by Google for it’s Knowledge-based-Trust Algorithm [<sup><u>\[2\]</u></sup>](https://www.vldb.org/pvldb/vol8/p938-dong.pdf) which is Google’s patented method of carrying out truth-discovery[<sup><u>\[8\]</u></sup>](https://economictimes.indiatimes.com/magazines/panache/google-to-rank-websites-based-on-facts-not-links/articleshow/46429104.cms?from=mdr) to improve its search results. It’s based on the same iterative principles as Page-Rank but considering the reliability of websites instead of number/quality[<sup><u>\[3\]</u></sup>](https://en.wikipedia.org/wiki/Truth_discovery#Web-link_based).
 
-- Model is completely data driven and does not require estimating any
-  > accuracy parameters
+- Model is completely data driven and does not require estimating any accuracy parameters
 
 - Model is relatively simple to implement, runs quickly and does not require expensive infra
 
@@ -324,8 +323,7 @@ style="width:5.76042in;height:2.01042in" />
 
 - The model has been implemented previously as open source code in Java/R [<sup><u>\[4\]</u></sup>](https://rdrr.io/github/rodrigowang/truthfinder/src/R/truthfinder.R) [<sup><u>\[5\]</u></sup>](https://github.com/LaureBerti/Truth_Discovery_Comparative_Analysis)
 
-2.  **Where has this model been implemented previously? Can we get some
-    > test results or evidence of success for this model?**
+2.  **Where has this model been implemented previously? Can we get some test results or evidence of success for this model?**
 
 - The Truth finder consistently displays good results for truth discovery on real world data sets: In this work[<sup><u>\[6\]</u></sup>](https://arxiv.org/pdf/1409.6428), it was tested on the following datasets:
 
