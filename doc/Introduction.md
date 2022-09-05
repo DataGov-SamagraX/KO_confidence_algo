@@ -308,7 +308,7 @@ style="width:5.76042in;height:2.01042in" />
 
 *<u>Image - 4.12</u>*
 
-**<u>Annexure:</u>  **
+**Annexure:  **
 
 1.  **Why are we following the Truth Finder Algorithm to calculate the confidence level of our data points? Is there any precedence establishing that this is the best/ideal way to go about it?**
 
