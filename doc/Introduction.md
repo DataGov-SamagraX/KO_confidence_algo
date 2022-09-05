@@ -1,5 +1,4 @@
-**Krushak Odisha  
-Truth Finder Confidence Algorithm**
+## Truth Finder Confidence Algorithm
 
 1.  **<u>Introduction:</u>**
 
