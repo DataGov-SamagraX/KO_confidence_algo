@@ -325,9 +325,9 @@ style="width:5.76042in;height:2.01042in" />
 
 2.  **Where has this model been implemented previously? Can we get some test results or evidence of success for this model?**
 
-- The Truth finder consistently displays good results for truth discovery on real world data sets: In this work[<sup><u>\[6\]</u></sup>](https://arxiv.org/pdf/1409.6428), it was tested on the following datasets:
+The Truth finder consistently displays good results for truth discovery on real world data sets: In this work[<sup><u>\[6\]</u></sup>](https://arxiv.org/pdf/1409.6428), it was tested on the following datasets:
 
-  - **The AbeBooks data set** : It’s a comparison of author details for computer science books extracted from AbeBooks websites in 2007 It consisted of 33,235 claims on the author names of 1,263 books by 877 book seller sources.
+ - **The AbeBooks data set** : It’s a comparison of author details for computer science books extracted from AbeBooks websites in 2007 It consisted of 33,235 claims on the author names of 1,263 books by 877 book seller sources.
 
 The ‘true value’ was available for 100 randomly sampled books for which the book covers were manually verified by the authors. The Truth finder algorithm had an accuracy of 94% which was 2nd best amongst algorithms compared with the least computation time
 
