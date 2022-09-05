@@ -161,8 +161,7 @@ def get_final_confidence(data,list_of_cols, column_to_check_confidence,t_w ,id_c
         column_matching_df.iloc[:,col_ii] = column_matching_df.iloc[:,col_ii] * tau_w[col_ii]
 
     final_conf_scores= np.where(pd.isnull(current_source),np.nan,1/(1 + np.exp( -1 * gamma * ( column_matching_df.sum(axis=1)  ) )))
-    
-    
+       
 
     data['final_confidence'] = final_conf_scores
 
@@ -199,7 +198,7 @@ for table_no in codes_df_run.index:
     
     column_to_check_confidence = 'Krushak_Odisha'
 
-    data_copy = get_final_confidence(df, column_to_check_confidence ,train_data_confidence ,id_colname)
+    data_copy = get_final_confidence(df, list_of_cols, column_to_check_confidence,t_w ,id_colname)
     
     conf_table = data_copy[['Krushak_Odisha','int_krushk_id','final_confidence']]
     
