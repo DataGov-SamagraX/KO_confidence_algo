@@ -113,16 +113,12 @@ product of (1-t(w)) will become 1<sup>-10</sup>
 transformed version of unadjusted confidence s(f) again to prevent
 underflow
 
-[<img src="./myMediaFolder/media/image2.png"
-style="width:2.30697in;height:0.24284in" />](https://www.codecogs.com/eqnedit.php?latex=%5Csigma(f)%3D-%5Cln%20(1-s(f))#0)
-*(2*)
+<img src="./myMediaFolder/media/image2.png" width="300" height="25" />
 
 **𝞂\*(f): Adjusted confidence score for a fact:** This is a logarithmic
 transformed version of adjusted confidence s\*(f) to prevent underflow
 
-[<img src="./myMediaFolder/media/image6.png"
-style="width:2.56406in;height:0.2475in" />](https://www.codecogs.com/eqnedit.php?latex=%5Csigma%5E%7B*%7D(f)%3D-%5Cln%20(1-s%5E%7B*%7D(f))#0)
-*(3)*
+<img src="./myMediaFolder/media/image6.png" width="300" height="25" />
 
 **Ɣ : Damping factor:** This is a parameter to be provided to the model
 to account for lack of independence amongst sources. We will be
@@ -144,9 +140,7 @@ higher confidence score if source A says ‘Amana’ rather ‘Bob’*
 **<u>The confidence score can be calculated from the trustworthiness of
 each data sources as:</u>**
 
-[<img src="./myMediaFolder/media/image16.png"
-style="width:2.59784in;height:0.53841in" />](https://www.codecogs.com/eqnedit.php?latex=s_%7B0%7D%5E%7B*%7D(f)%3D%5Cfrac%7B1%7D%7B1%2Be%5E%7B%5Csigma(f)-%5Csum_%7Bf%5E%7B%5Cprime%7D%7D%20%5Csigma%5Cleft(f%5E%7B%5Cprime%7D%5Cright)%20%7D#0)
-*(4)*
+[<img src="./myMediaFolder/media/image16.png"  width="300" height="25" /> .. 4 
 
 where,
 
