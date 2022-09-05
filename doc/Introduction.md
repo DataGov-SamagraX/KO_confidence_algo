@@ -266,14 +266,14 @@ Repeating *<u>Step 2</u>* with the new t(w) values, we get :
 style="width:2.91667in;height:2.02083in" /><img src="./myMediaFolder/media/image1.png"
 style="width:3.17708in;height:1.91667in" />
 
-*<u>Image - 4.6</u> <u>Image - 4.7</u>*
+*<u>Image - 4.6</u> 
 
 And then calculating the new t(w) values , we get :
 
 <img src="./myMediaFolder/media/image3.png"
 style="width:3.23958in;height:0.70833in" />
 
-*<u>Image - 4.8</u>*
+*<u>Image - 4.7</u>*
 
 We must keep iterating this process until the t(w) value stops changing.
 *<u>Image - 4.8</u>* is showing the t(w) values for 10 iterations:
@@ -281,7 +281,7 @@ We must keep iterating this process until the t(w) value stops changing.
 <img src="./myMediaFolder/media/image10.png"
 style="width:3.26042in;height:3.03125in" />
 
-*<u>Image - 4.9</u>*
+*<u>Image - 4.8</u>*
 
 As we can see above, it starts with 0.5 for all sources and then keeps
 changing with every iteration. However the degree of change keeps
@@ -298,7 +298,7 @@ iterations’ t(w) values using Equation 4:
 style="width:2.91667in;height:2.02083in" /><img src="./myMediaFolder/media/image4.png"
 style="width:3.11458in;height:1.89583in" />
 
-*<u>Image - 4.10</u> <u>Image - 4.11</u>*
+*<u>Image - 4.9</u> 
 
 We can the calculate the KO values confidence by matching the KO values
 to the source:
@@ -306,9 +306,9 @@ to the source:
 <img src="./myMediaFolder/media/image12.png"
 style="width:5.76042in;height:2.01042in" />
 
-*<u>Image - 4.12</u>*
+*<u>Image - 4.10</u>*
 
-**Annexure:  **
+### Annexure:
 
 1.  **Why are we following the Truth Finder Algorithm to calculate the confidence level of our data points? Is there any precedence establishing that this is the best/ideal way to go about it?**
 
