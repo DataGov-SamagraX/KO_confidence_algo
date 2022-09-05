@@ -107,7 +107,7 @@ leading to unexpected errors
 E.g, If we have 10 matching sources and their t(w) is 0.99, then the
 product of (1-t(w)) will become 1<sup>-10</sup>
 
-<img src="./myMediaFolder/media/image8.gif"  width="200" height="100" />
+<img src="./myMediaFolder/media/image8.gif"  width="400" height="20" />
 
 **𝞂(f): Unadjusted confidence score for a fact:** This is a logarithmic
 transformed version of unadjusted confidence s(f) again to prevent
