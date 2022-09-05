@@ -144,11 +144,11 @@ each data sources as:</u>**
 
 where,
 
-[<img src="./myMediaFolder/media/image15.png" width="300" height="50" />
+<img src="./myMediaFolder/media/image15.png" width="300" height="50" />
 
 and,
 
-<img src="./myMediaFolder/media/image8.gif",width="300" height="25" />
+<img src="./myMediaFolder/media/image8.gif" width="300" height="25" />
 
 **<u>Illustrative Example for calculating confidence:</u>**
 
