@@ -331,14 +331,14 @@ style="width:5.76042in;height:2.01042in" />
 
 The ‘true value’ was available for 100 randomly sampled books for which the book covers were manually verified by the authors. The Truth finder algorithm had an accuracy of 94% which was 2nd best amongst algorithms compared with the least computation time
 
-- **Weather data set :** The Weather data set consists of 426,360 claims from 18 sources on the Web for 5 properties (temperature, humidity etc) on hourly weather for 49 US cities between January and February 2010. ‘True value’, was deemed to be the AccuWeather website values which were available in 75% of the cases
+  - **Weather data set :** The Weather data set consists of 426,360 claims from 18 sources on the Web for 5 properties (temperature, humidity etc) on hourly weather for 49 US cities between January and February 2010. ‘True value’, was deemed to be the AccuWeather website values which were available in 75% of the cases
 
  Truth Finder had an accuracy of 86% which was the best amongst all algorithms compared with the least computation time
 
-- **Biography data set :** The Weather data set consists of 9 biography details (father name, mother name, age etc) extracted from Wikipedia with 10,862,648 claims over 19,606 people and 9 attributes from 771,132 online sources
+  - **Biography data set :** The Weather data set consists of 9 biography details (father name, mother name, age etc) extracted from Wikipedia with 10,862,648 claims over 19,606 people and 9 attributes from 771,132 online sources
 
  Truth Finder had an accuracy of 90% which was the 2nd best amongst all algorithms compared with the least computation time
 
-- **Biography data set :** The Population data set consists of 49,955 claims on city population extracted from Wikipedia edits from 4,264 sources. The ‘true value’ was considered to be the official US census data.
+  - **Biography data set :** The Population data set consists of 49,955 claims on city population extracted from Wikipedia edits from 4,264 sources. The ‘true value’ was considered to be the official US census data.
 
  Truth Finder had an accuracy of 87% which was the 2nd best amongst all the algorithms
