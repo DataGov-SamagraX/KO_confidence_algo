@@ -140,19 +140,15 @@ higher confidence score if source A says ‘Amana’ rather ‘Bob’*
 **<u>The confidence score can be calculated from the trustworthiness of
 each data sources as:</u>**
 
-[<img src="./myMediaFolder/media/image16.png"  width="300" height="25" /> .. 4 
+<img src="./myMediaFolder/media/image16.png"  width="300" height="50" />
 
 where,
 
-[<img src="./myMediaFolder/media/image15.png"
-style="width:1.61198in;height:0.36458in" />](https://www.codecogs.com/eqnedit.php?latex=%5Csigma(f)%3D%5Csum_%7Bw%20%5Cin%20W(f)%7D%20%5Ctau(w)#0)
-*(5)*
+[<img src="./myMediaFolder/media/image15.png" width="300" height="50" />
 
 and,
 
-[<img src="./myMediaFolder/media/image8.gif"
-style="width:2.13981in;height:0.25in" />](https://latex-staging.easygenerator.com/eqneditor/editor.php?latex=%5Ctau(w)%3D-%5Cln%20(1-t(w))#0)
-*(1)*
+<img src="./myMediaFolder/media/image8.gif",width="300" height="25" />
 
 **<u>Illustrative Example for calculating confidence:</u>**
 
