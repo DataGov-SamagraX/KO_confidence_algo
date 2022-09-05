@@ -64,7 +64,7 @@ $$\tau(w)=-\ln (1-t(w))$$
 
 <strong>$\sigma^{*}$(f):  Adjusted confidence score for a fact:</strong>  This is a logarithmic transformed version of adjusted confidence s*(f) to prevent underflow
 
-$$\sigma^{*}(w)=-\ln (1-s^{*}(w))$$
+$$\sigma^(w)=-\ln (1-s^{*}(w))$$
 
 
 **Ɣ : Damping factor:** This is a parameter to be provided to the model to account for lack of independence amongst sources. We will be considering its value as 1 for now, assuming that the attestation sources are completely independent of each other. In case of any interdependence between two or more attestation sources, we can check for various parameters of  Ɣ (from 0-1)
