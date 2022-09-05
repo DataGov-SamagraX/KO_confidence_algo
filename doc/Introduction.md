@@ -108,7 +108,7 @@ E.g, If we have 10 matching sources and their t(w) is 0.99, then the
 product of (1-t(w)) will become 1<sup>-10</sup>
 
 > [<img src="./myMediaFolder/media/image8.gif"
-> style="width:2.53906in;height:0.25391in" />](https://latex-staging.easygenerator.com/eqneditor/editor.php?latex=%5Ctau(w)%3D-%5Cln%20(1-t(w))#0)
+> style="width:1.53906in;height:0.05391in" />](https://latex-staging.easygenerator.com/eqneditor/editor.php?latex=%5Ctau(w)%3D-%5Cln%20(1-t(w))#0)
 > *(1)*
 
 **𝞂(f): Unadjusted confidence score for a fact:** This is a logarithmic
