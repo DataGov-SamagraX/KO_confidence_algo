@@ -62,7 +62,7 @@ $$\tau(w)=-\ln (1-t(w))$$
 **𝞂(f):  Unadjusted confidence score for a fact:**  This is a logarithmic transformed version of unadjusted confidence s(f) again to prevent underflow
  	$$\sigma(w)=-\ln (1-s(w))$$
 
-**𝞂*(f):  Adjusted confidence score for a fact:**  This is a logarithmic transformed version of adjusted confidence s*(f) to prevent underflow
+<strong>$\sigma^{*}$(f):  Adjusted confidence score for a fact:</strong>  This is a logarithmic transformed version of adjusted confidence s*(f) to prevent underflow
 
 $$\sigma^{*}(w)=-\ln (1-s^{*}(w))$$
 
