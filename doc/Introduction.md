@@ -60,7 +60,7 @@ E.g, If we have 10 matching sources and their t(w) is 0.99, then the product of 
 $$\tau(w)=-\ln (1-t(w))$$
 
 **𝞂(f):  Unadjusted confidence score for a fact:**  This is a logarithmic transformed version of unadjusted confidence s(f) again to prevent underflow
- 				(2)	
+ 	$$\sigma(w)=-\ln (1-t(w))$$
 
 **𝞂*(f):  Adjusted confidence score for a fact:**  This is a logarithmic transformed version of adjusted confidence s*(f) to prevent underflow
 
