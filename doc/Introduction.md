@@ -311,77 +311,36 @@ style="width:5.76042in;height:2.01042in" />
 **<u>Annexure:</u>  
 **
 
-1.  **Why are we following the Truth Finder Algorithm to calculate the
-    > confidence level of our data points? Is there any precedence
-    > establishing that this is the best/ideal way to go about it?**
+1.  **Why are we following the Truth Finder Algorithm to calculate the confidence level of our data points? Is there any precedence establishing that this is the best/ideal way to go about it?**
 
-- The Truth Finder algorithm is a well-known research paper cited
-  > extensively in the data science world
-  > [<sup><u>\[1\]</u></sup>](https://ieeexplore.ieee.org/document/4415269/citations?tabFilter=papers#anchor-paper-citations-nonieee)
-  > including by Google for it’s Knowledge-based-Trust Algorithm
-  > [<sup><u>\[2\]</u></sup>](https://www.vldb.org/pvldb/vol8/p938-dong.pdf)
-  > which is Google’s patented method of carrying out
-  > truth-discovery[<sup><u>\[8\]</u></sup>](https://economictimes.indiatimes.com/magazines/panache/google-to-rank-websites-based-on-facts-not-links/articleshow/46429104.cms?from=mdr)
-  > to improve its search results. It’s based on the same iterative
-  > principles as Page-Rank but considering the reliability of websites
-  > instead of
-  > number/quality[<sup><u>\[3\]</u></sup>](https://en.wikipedia.org/wiki/Truth_discovery#Web-link_based).
+- The Truth Finder algorithm is a well-known research paper cited extensively in the data science world [<sup><u>\[1\]</u></sup>](https://ieeexplore.ieee.org/document/4415269/citations?tabFilter=papers#anchor-paper-citations-nonieee) including by Google for it’s Knowledge-based-Trust Algorithm [<sup><u>\[2\]</u></sup>](https://www.vldb.org/pvldb/vol8/p938-dong.pdf) which is Google’s patented method of carrying out truth-discovery[<sup><u>\[8\]</u></sup>](https://economictimes.indiatimes.com/magazines/panache/google-to-rank-websites-based-on-facts-not-links/articleshow/46429104.cms?from=mdr) to improve its search results. It’s based on the same iterative principles as Page-Rank but considering the reliability of websites instead of number/quality[<sup><u>\[3\]</u></sup>](https://en.wikipedia.org/wiki/Truth_discovery#Web-link_based).
 
 - Model is completely data driven and does not require estimating any
   > accuracy parameters
 
-- Model is relatively simple to implement, runs quickly and does not
-  > require expensive infra
+- Model is relatively simple to implement, runs quickly and does not require expensive infra
 
-- Model works well with low number of data sources (most truth discovery
-  > models are built for websites and often scrape from 1000’s of
-  > websites to check)
+- Model works well with low number of data sources (most truth discovery models are built for websites and often scrape from 1000’s of websites to check)
 
-- The model has been implemented previously as open source code in
-  > Java/R
-  > [<sup><u>\[4\]</u></sup>](https://rdrr.io/github/rodrigowang/truthfinder/src/R/truthfinder.R)
-  > [<sup><u>\[5\]</u></sup>](https://github.com/LaureBerti/Truth_Discovery_Comparative_Analysis)
+- The model has been implemented previously as open source code in Java/R [<sup><u>\[4\]</u></sup>](https://rdrr.io/github/rodrigowang/truthfinder/src/R/truthfinder.R) [<sup><u>\[5\]</u></sup>](https://github.com/LaureBerti/Truth_Discovery_Comparative_Analysis)
 
 2.  **Where has this model been implemented previously? Can we get some
     > test results or evidence of success for this model?**
 
-- The Truth finder consistently displays good results for truth
-  > discovery on real world data sets: In this
-  > work[<sup><u>\[6\]</u></sup>](https://arxiv.org/pdf/1409.6428), it
-  > was tested on the following datasets:
+- The Truth finder consistently displays good results for truth discovery on real world data sets: In this work[<sup><u>\[6\]</u></sup>](https://arxiv.org/pdf/1409.6428), it was tested on the following datasets:
 
-  - **The AbeBooks data set** : It’s a comparison of author details for
-    > computer science books extracted from AbeBooks websites in 2007 It
-    > consisted of 33,235 claims on the author names of 1,263 books by
-    > 877 book seller sources.
+  - **The AbeBooks data set** : It’s a comparison of author details for computer science books extracted from AbeBooks websites in 2007 It consisted of 33,235 claims on the author names of 1,263 books by 877 book seller sources.
 
-> The ‘true value’ was available for 100 randomly sampled books for
-> which the book covers were manually verified by the authors.
->
-> The Truth finder algorithm had an accuracy of 94% which was 2nd best
-> amongst algorithms compared with the least computation time
+The ‘true value’ was available for 100 randomly sampled books for which the book covers were manually verified by the authors. The Truth finder algorithm had an accuracy of 94% which was 2nd best amongst algorithms compared with the least computation time
 
-- **Weather data set :** The Weather data set consists of 426,360 claims
-  > from 18 sources on the Web for 5 properties (temperature, humidity
-  > etc) on hourly weather for 49 US cities between January and
-  > February 2010. ‘True value’, was deemed to be the AccuWeather
-  > website values which were available in 75% of the cases
+- **Weather data set :** The Weather data set consists of 426,360 claims from 18 sources on the Web for 5 properties (temperature, humidity etc) on hourly weather for 49 US cities between January and February 2010. ‘True value’, was deemed to be the AccuWeather website values which were available in 75% of the cases
 
-> Truth Finder had an accuracy of 86% which was the best amongst all
-> algorithms compared with the least computation time
+ Truth Finder had an accuracy of 86% which was the best amongst all algorithms compared with the least computation time
 
-- **Biography data set :** The Weather data set consists of 9 biography
-  > details (father name, mother name, age etc) extracted from Wikipedia
-  > with 10,862,648 claims over 19,606 people and 9 attributes from
-  > 771,132 online sources
+- **Biography data set :** The Weather data set consists of 9 biography details (father name, mother name, age etc) extracted from Wikipedia with 10,862,648 claims over 19,606 people and 9 attributes from 771,132 online sources
 
-> Truth Finder had an accuracy of 90% which was the 2nd best amongst all
-> algorithms compared with the least computation time
+ Truth Finder had an accuracy of 90% which was the 2nd best amongst all algorithms compared with the least computation time
 
-- **Biography data set :** The Population data set consists of 49,955
-  > claims on city population extracted from Wikipedia edits from 4,264
-  > sources. The ‘true value’ was considered to be the official US
-  > census data.
+- **Biography data set :** The Population data set consists of 49,955 claims on city population extracted from Wikipedia edits from 4,264 sources. The ‘true value’ was considered to be the official US census data.
 
-> Truth Finder had an accuracy of 87% which was the 2nd best amongst all
-> the algorithms
+ Truth Finder had an accuracy of 87% which was the 2nd best amongst all the algorithms
