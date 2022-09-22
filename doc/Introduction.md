@@ -18,9 +18,9 @@ algorithm.
 
 The algorithm is based on these 4 premises:
 
-**Premise 1:** **Usually there is only one true fact (Value) for a
+**Premise 1:** Usually there is only one true fact (Value) for a
 property (Data Field) of an object (Farmer Record).  
-**We assume that there is only one true fact for a property *(data
+We assume that there is only one true fact for a property *(data
 field)* of an object *(farmer)*.
 
 *For example: There can only be 1 true value for name of a farmer.*
