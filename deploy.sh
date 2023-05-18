@@ -3,6 +3,7 @@ source venv/bin/activate
 
 pip install sshtunnel
 pip install numpy 
+pip install pandas 
 pip install logging
 pip install mysql-connector-python
 
