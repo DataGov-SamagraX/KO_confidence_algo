@@ -24,13 +24,13 @@ time_limit_queries = 60 * 60 * 2 #secs
 log_file = 'TestCSVlogs.log'
 ssh_host = '20.193.244.68'
 ssh_username = 'audit'
-ssh_password = 'Audit@123'
+ssh_password = 
 database_username = 'kauditU1'
-database_password = 'K@ud!T$23'
+database_password = 
 database_name = 'dss_production'
 localhost = '127.0.0.1'
 input_csv_file = 'sql_code_repo_v5.csv'
-output_folder = 'generated_csv_2'
+output_folder = 'SQL_dump'
 
 
 warnings.filterwarnings('ignore') # suppress pandas warnings
@@ -52,7 +52,7 @@ def open_ssh_tunnel(verbose=False):
         (ssh_host, 22),
         ssh_username = ssh_username,
         ssh_password = ssh_password,
-        remote_bind_address = ('127.0.0.1', 3306)
+        remote_bind_address = (localhost, 3306)
     )
     
     tunnel.start()
@@ -64,7 +64,7 @@ def mysql_connect():
     """
     
     connection = pymysql.connect(
-        host='127.0.0.1',
+        host=localhost,
         user=database_username,
         passwd=database_password,
         db=database_name,
