@@ -1,6 +1,6 @@
 import numpy as np
 import pandas as pd
-import mysql.connector
+
 import os
 
 
@@ -16,7 +16,7 @@ sql_folder_location =  'SQL_dump/'
 gamma = 1
 max_t_w_value = 0.975
 maximum_number_of_iterations = 100 
-minimum_absolute_difference = 0.001
+minimum_absolute_difference =  0.001
 
 
 

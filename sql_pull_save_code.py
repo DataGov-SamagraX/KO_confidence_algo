@@ -1,8 +1,6 @@
 #!/usr/bin/env python
 # coding: utf-8
 
-# In[ ]:
-
 
 from datetime import datetime
 
@@ -94,8 +92,6 @@ def close_ssh_tunnel():
     tunnel.close
 
 
-# In[ ]:
-
 
 ## reading the table with the SQL queries for downloading necessary tables 
 codes_df = pd.read_csv(input_csv_file)
@@ -103,14 +99,10 @@ codes_df_run = codes_df.loc[codes_df.Multiple_confidence_columns == 1,: ]
 codes_df_run = codes_df[(codes_df['Queries to be modified']) == 1]
 
 
-# In[ ]:
-
 
 open_ssh_tunnel()
 # connection = mysql_connect()
 
-
-# In[ ]:
 
 
 def generate_range(n_parts):
@@ -124,9 +116,6 @@ def generate_range(n_parts):
     return res
 
 # generate_range(20)
-
-
-# In[ ]:
 
 
 def do_thread_work(query, timeout):
@@ -151,8 +140,6 @@ def do_thread_work(query, timeout):
             cursor.execute(sql)
     conn.close()
 
-
-# In[ ]:
 
 
 if not os.path.exists(f"./{output_folder}"):
@@ -200,7 +187,6 @@ for index, row in codes_df_run.iterrows():
         connection.close()
 
 
-# In[ ]:
 
 
 # mysql_disconnect(connection)
