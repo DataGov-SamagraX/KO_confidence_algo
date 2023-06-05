@@ -1514,7 +1514,7 @@ LEFT JOIN
 `full_irrigation_kharif` IS NOT NULL)  AS ama_krushi
 ON t_farmer_info.`vch_mobile_no` = ama_krushi.number
 
-WHERE `t_cropping_land_details`.`int_access_to_irrigation` IS NOT NULL",,1,"field,self,ama_krushi",1,,,1,"SELECT DISTINCT `t_cropping_land_details`.`int_krushk_id`,
+WHERE `t_cropping_land_details`.`int_access_to_irrigation` IS NOT NULL",,1,"field,self,ama_krushi",0,,,1,"SELECT DISTINCT `t_cropping_land_details`.`int_krushk_id`,
 `t_cropping_land_details`.`vch_aadharno`,
 `t_cropping_land_details`.`vch_tahsil`,
 `t_cropping_land_details`.`vch_village`,
