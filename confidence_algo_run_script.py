@@ -3,9 +3,6 @@ import pandas as pd
 
 import os
 
-
-
-
 ## locations where the files with confidence scores need to be saved
 save_location = 'confidence_results/'
 
@@ -18,7 +15,8 @@ max_t_w_value = 0.975
 maximum_number_of_iterations = 100 
 minimum_absolute_difference =  0.001
 
-
+if not os.path.exists(f"./{save_location}"):
+    os.makedirs(save_location)
 
 #%% Pre-defined variables
 
@@ -161,22 +159,23 @@ for table_no in codes_df_run.index:
     
     try:
         df = pd.read_csv(sql_folder_location + table_name_str + '.csv')
-        
-        df['id'] = df.index
-        df['Krushak_Odisha'] = df.field.combine_first(df.self)
-        no_cols =  len(list_of_cols)
-        t_w = np.repeat(0.5,no_cols)
-        id_colname = 'id'
-        
-        t_w_df,train_data_confidence = carry_out_iterations( df,list_of_cols,t_w,id_colname, gamma)
+        if (df.shape[0] > 1): 
+            df['id'] = df.index
+            df['Krushak_Odisha'] = df.field.combine_first(df.self)
+            no_cols =  len(list_of_cols)
+            t_w = np.repeat(0.5,no_cols)
+            id_colname = 'id'
+            
+            t_w_df,train_data_confidence = carry_out_iterations( df,list_of_cols,t_w,id_colname, gamma)
 
-        column_to_check_confidence = 'Krushak_Odisha'
+            column_to_check_confidence = 'Krushak_Odisha'
 
-        data_copy = get_final_confidence(df, list_of_cols, column_to_check_confidence,t_w_df.loc[t_w_df.shape[0]-1,:] ,id_colname)
+            data_copy = get_final_confidence(df, list_of_cols, column_to_check_confidence,t_w_df.loc[t_w_df.shape[0]-1,:] ,id_colname)
 
-        conf_table = data_copy[['Krushak_Odisha','int_krushk_id','final_confidence']]
+            conf_table = data_copy[['Krushak_Odisha','int_krushk_id','final_confidence']]
 
-        conf_table.to_csv( save_location + table_name_str+str(table_no)+'.csv', encoding = "utf-8")
-        
+            conf_table.to_csv( save_location + table_name_str+str(table_no)+'.csv', encoding = "utf-8")
+        else :
+            print('Table has <= 1 row of data')
     except :
         print('Table ',table_name_str, ' does not exist')
