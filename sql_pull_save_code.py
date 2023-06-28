@@ -7,8 +7,8 @@ from datetime import datetime
 import pandas as pd
 import pymysql
 import logging
-import sshtunnel
-from sshtunnel import SSHTunnelForwarder
+#import sshtunnel
+#from sshtunnel import SSHTunnelForwarder
 import numpy as np
 import os
 import logging
@@ -32,28 +32,8 @@ output_folder = 'SQL_dump'
 
 
 warnings.filterwarnings('ignore') # suppress pandas warnings
-logging.basicConfig(filename=log_file, level=logging.INFO)
+# logging.basicConfig(filename=log_file, level=logging.INFO)
 
-
-def open_ssh_tunnel(verbose=False):
-    """Open an SSH tunnel and connect using a username and password.
-    
-    :param verbose: Set to True to show logging
-    :return tunnel: Global SSH tunnel connection
-    """
-    
-    if verbose:
-        sshtunnel.DEFAULT_LOGLEVEL = logging.DEBUG
-    
-    global tunnel
-    tunnel = SSHTunnelForwarder(
-        (ssh_host, 22),
-        ssh_username = ssh_username,
-        ssh_password = ssh_password,
-        remote_bind_address = (localhost, 3306)
-    )
-    
-    tunnel.start()
 
 def mysql_connect():
     """Connect to a MySQL server using the SSH tunnel connection
@@ -100,7 +80,7 @@ codes_df_run = codes_df[(codes_df['Queries to be modified']) == 1]
 
 
 
-open_ssh_tunnel()
+#open_ssh_tunnel()
 # connection = mysql_connect()
 
 
@@ -190,5 +170,5 @@ for index, row in codes_df_run.iterrows():
 
 
 # mysql_disconnect(connection)
-close_ssh_tunnel()
+#close_ssh_tunnel()
 
