@@ -6,7 +6,7 @@ This repo is to deploy the confidence algorithm within for the Krushak Odisha DB
 
 There are 4 main steps to deploy the algo: 
 - Clone the repo
-- set the config.ini file, copy the config_example.ini file as it is and set all creds.
+- set the config.ini file.
 - run bash deploy.sh on terminal 
 - The files will be created in the folder location based on the name stored in the output_folder variable 
 

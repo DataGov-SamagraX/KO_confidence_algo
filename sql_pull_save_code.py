@@ -106,7 +106,7 @@ def close_ssh_tunnel():
 ## reading the table with the SQL queries for downloading necessary tables 
 codes_df = pd.read_csv(input_csv_file)
 codes_df_run = codes_df.loc[codes_df.Multiple_confidence_columns == 1,: ]
-codes_df_run = codes_df[(codes_df['Queries to be modified1']) == 1]
+codes_df_run = codes_df[(codes_df['Queries to be modified']) == 1]
 
 
 
@@ -124,7 +124,6 @@ def generate_range(n_parts):
     for x in l:
         res.append(( prev, ('0' * (12 - len(str(x - 1)))) + str(x - 1) ))
         prev = ('0' * (12 - len(str(x)))) + str(x)
-        break
     return res
 
 #generate_range(20)
@@ -202,5 +201,6 @@ for index, row in codes_df_run.iterrows():
 
 
 mysql_disconnect(connection)
-close_ssh_tunnel()
+if is_ssh_tunnel_required:
+    close_ssh_tunnel()
 
