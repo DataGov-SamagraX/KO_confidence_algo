@@ -3,6 +3,7 @@
 
 
 from datetime import datetime
+import configparser
 
 import pandas as pd
 import pymysql
@@ -17,22 +18,50 @@ import time
 import threading
 
 # CONFIG
-batch_size = 20 # this is batch size of Aadhaar
-time_limit_queries = 60 * 60 * 2 #secs
-log_file = 'TestCSVlogs.log'
-ssh_host = '20.193.244.68'
-ssh_username = 'audit'
-#ssh_password = 
-database_username = 'kauditU1'
-#database_password = 
-database_name = 'dss_production'
-localhost = '127.0.0.1'
-input_csv_file = 'sql_code_repo_v5.csv'
-output_folder = 'SQL_dump'
+config = configparser.ConfigParser()
+config.read('./config.ini')
 
+batch_size = config.getint('APP','batch_size') # this is batch size of Aadhaar
+time_limit_queries = config.getint('APP','time_limit_queries') #secs
+
+log_file = config.get('FILES','log_file')
+
+is_ssh_tunnel_required = config.getboolean('SSH', 'is_ssh_tunnel_required')
+ssh_host = config.get('SSH','ssh_host')
+ssh_username = config.get('SSH','ssh_username')
+ssh_password = config.get('SSH','ssh_password')
+
+database_username = config.get('DATABASE','database_username')
+database_password = config.get('DATABASE','database_password') 
+database_name = config.get('DATABASE','database_name')
+localhost = config.get('DATABASE','localhost')
+database_port = config.getint('DATABASE','database_port')
+
+input_csv_file = config.get('FILES','input_csv_file')
+output_folder = config.get('FILES','output_folder')
 
 warnings.filterwarnings('ignore') # suppress pandas warnings
 # logging.basicConfig(filename=log_file, level=logging.INFO)
+
+
+
+if is_ssh_tunnel_required:
+    import sshtunnel
+    from sshtunnel import SSHTunnelForwarder
+
+def open_ssh_tunnel(verbose=False):
+    if verbose:
+        sshtunnel.DEFAULT_LOGLEVEL = logging.DEBUG
+
+    global tunnel
+    tunnel = SSHTunnelForwarder(
+        (ssh_host, 22),
+        ssh_username = ssh_username,
+        ssh_password = ssh_password,
+        remote_bind_address = (localhost, 3306)
+    )
+    tunnel.start()
+
 
 
 def mysql_connect():
@@ -40,13 +69,15 @@ def mysql_connect():
     
     :return connection: Global MySQL database connection
     """
-    
+    if is_ssh_tunnel_required:
+        database_port=tunnel.local_bind_port
+
     connection = pymysql.connect(
         host=localhost,
         user=database_username,
         passwd=database_password,
         db=database_name,
-        port=tunnel.local_bind_port
+        port=database_port
     )
     return connection
 
@@ -69,19 +100,19 @@ def close_ssh_tunnel():
     """Closes the SSH tunnel connection.
     """
     
-    tunnel.close
-
+    tunnel.stop()
 
 
 ## reading the table with the SQL queries for downloading necessary tables 
 codes_df = pd.read_csv(input_csv_file)
 codes_df_run = codes_df.loc[codes_df.Multiple_confidence_columns == 1,: ]
-codes_df_run = codes_df[(codes_df['Queries to be modified']) == 1]
+codes_df_run = codes_df[(codes_df['Queries to be modified1']) == 1]
 
 
 
-#open_ssh_tunnel()
-# connection = mysql_connect()
+if is_ssh_tunnel_required:
+    open_ssh_tunnel()
+connection = mysql_connect()
 
 
 
@@ -93,9 +124,10 @@ def generate_range(n_parts):
     for x in l:
         res.append(( prev, ('0' * (12 - len(str(x - 1)))) + str(x - 1) ))
         prev = ('0' * (12 - len(str(x)))) + str(x)
+        break
     return res
 
-# generate_range(20)
+#generate_range(20)
 
 
 def do_thread_work(query, timeout):
@@ -130,7 +162,7 @@ RANGE = generate_range(batch_size) # this is batch size of Aadhaar
 for index, row in codes_df_run.iterrows():
     print('\nTable current :',  index, '\n')
     logging.info(f'\nTable current : {index} on {datetime.now()} \n')
-    query_template = codes_df.loc[index,'Optimized Query']
+    query_template = codes_df.loc[index,'Final Query']
     query_template = query_template.replace('\n'," ")
     query_template = query_template.replace('\t'," ")
     # columns = codes_df.loc[index,'Columns_list']
@@ -169,6 +201,6 @@ for index, row in codes_df_run.iterrows():
 
 
 
-# mysql_disconnect(connection)
-#close_ssh_tunnel()
+mysql_disconnect(connection)
+close_ssh_tunnel()
 
