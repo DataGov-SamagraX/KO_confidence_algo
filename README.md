@@ -5,8 +5,8 @@ This repo is to deploy the confidence algorithm within for the Krushak Odisha DB
 
 
 There are 4 main steps to deploy the algo: 
-- Clone the repo 
-- Modify the file ['sql_pull_save_code_repo.py'](https://github.com/DataGov-SamagraX/KO_confidence_algo/blob/main/sql_pull_save_code.py) to add the required passwords-  You need to modify the sshh password and the database password
+- Clone the repo
+- set the config.ini file.
 - run bash deploy.sh on terminal 
 - The files will be created in the folder location based on the name stored in the output_folder variable 
 
