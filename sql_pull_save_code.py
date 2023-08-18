@@ -31,6 +31,10 @@ ssh_host = config.get('SSH','ssh_host')
 ssh_username = config.get('SSH','ssh_username')
 ssh_password = config.get('SSH','ssh_password')
 
+database_username = config.get('DATABASE','database_username')
+database_password = config.get('DATABASE','database_password') 
+database_name = config.get('DATABASE','database_name')
+database_port = config.getint('DATABASE','database_port')
 localhost = config.get('DATABASE','localhost')
 
 
@@ -66,17 +70,14 @@ def mysql_connect():
     
     :return connection: Global MySQL database connection
     """
-    print("Connecting to DB")
-    database_username = config.get('DATABASE','database_username')
-    database_password = config.get('DATABASE','database_password') 
-    database_name = config.get('DATABASE','database_name')
-    database_port = config.getint('DATABASE','database_port')
+    global database_port
     print(database_port)
     
 
     if is_ssh_tunnel_required:
         database_port=tunnel.local_bind_port
-
+        
+    print(database_port)
     connection = pymysql.connect(
         host=localhost,
         user=database_username,
