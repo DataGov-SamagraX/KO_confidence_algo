@@ -31,11 +31,8 @@ ssh_host = config.get('SSH','ssh_host')
 ssh_username = config.get('SSH','ssh_username')
 ssh_password = config.get('SSH','ssh_password')
 
-database_username = config.get('DATABASE','database_username')
-database_password = config.get('DATABASE','database_password') 
-database_name = config.get('DATABASE','database_name')
 localhost = config.get('DATABASE','localhost')
-database_port = config.getint('DATABASE','database_port')
+
 
 input_csv_file = config.get('FILES','input_csv_file')
 output_folder = config.get('FILES','output_folder')
@@ -49,18 +46,18 @@ if is_ssh_tunnel_required:
     import sshtunnel
     from sshtunnel import SSHTunnelForwarder
 
-def open_ssh_tunnel(verbose=False):
-    if verbose:
-        sshtunnel.DEFAULT_LOGLEVEL = logging.DEBUG
+    def open_ssh_tunnel(verbose=False):
+        if verbose:
+            sshtunnel.DEFAULT_LOGLEVEL = logging.DEBUG
 
-    global tunnel
-    tunnel = SSHTunnelForwarder(
-        (ssh_host, 22),
-        ssh_username = ssh_username,
-        ssh_password = ssh_password,
-        remote_bind_address = (localhost, 3306)
-    )
-    tunnel.start()
+        global tunnel
+        tunnel = SSHTunnelForwarder(
+            (ssh_host, 22),
+            ssh_username = ssh_username,
+            ssh_password = ssh_password,
+            remote_bind_address = (localhost, 3306)
+        )
+        tunnel.start()
 
 
 
@@ -69,6 +66,14 @@ def mysql_connect():
     
     :return connection: Global MySQL database connection
     """
+    print("Connecting to DB")
+    database_username = config.get('DATABASE','database_username')
+    database_password = config.get('DATABASE','database_password') 
+    database_name = config.get('DATABASE','database_name')
+    database_port = config.getint('DATABASE','database_port')
+    print(database_port)
+    
+
     if is_ssh_tunnel_required:
         database_port=tunnel.local_bind_port
 
@@ -133,7 +138,7 @@ def do_thread_work(query, timeout):
     '''
     it will sleep for specified time then it will try to kill the given query
     '''
-    print(f'sleeping for {timeout}secs')
+    print(f"sleeping for {timeout} secs")
     time.sleep(timeout)
     print('sleep complete')
     conn = mysql_connect()
