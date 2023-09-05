@@ -15,7 +15,7 @@ WHEN (t_farmer_info.tin_farmer_action = 1 OR(t_farmer_info.tin_farmer_action = 2
  AND t_farmer_info.int_kyc_verify = 1
  AND td.tin_farmerdb_status = 1 
  AND td.tin_consent_status = 1
- AND DATE(td.dtm_consent_date) > ""2022-05-03"" 
+ AND DATE(td.dtm_consent_date) > '2022-05-03'
  THEN  `t_farmer_occupation`.`vch_occupation` ELSE NULL END AS self,
 
 
@@ -102,7 +102,7 @@ WHEN (t_farmer_info.tin_farmer_action = 1 OR(t_farmer_info.tin_farmer_action = 2
  AND t_farmer_info.int_kyc_verify = 1
  AND td.tin_farmerdb_status = 1 
  AND td.tin_consent_status = 1
- AND DATE(td.dtm_consent_date) > ""2022-05-03"" 
+ AND DATE(td.dtm_consent_date) > '2022-05-03'
  THEN  `t_farmer_activities`.`vch_activity` ELSE NULL END AS self,
 
 
@@ -150,7 +150,7 @@ WHEN (tf.tin_farmer_action = 1 OR(tf.tin_farmer_action = 2 AND `t_demographic_de
  AND tf.int_kyc_verify = 1
  AND `t_demographic_details`.tin_farmerdb_status = 1 
  AND `t_demographic_details`.tin_consent_status = 1
- AND DATE(`t_demographic_details`.dtm_consent_date) > ""2022-05-03"" 
+ AND DATE(`t_demographic_details`.dtm_consent_date) > '2022-05-03'
  THEN  `t_demographic_details`.`int_category` ELSE NULL END AS self,
 
 
@@ -175,57 +175,7 @@ AND `ppas_dump_data`.`AADHAARNO` BETWEEN '{{X}}' AND '{{Y}}'
 ON `t_demographic_details`.`vch_aadharno` = `ppas_dump_data`.`AADHAARNO`
 WHERE t_demographic_details.`int_category` IS NOT NULL
 AND `t_demographic_details`.`vch_aadharno` BETWEEN '{{X}}' AND '{{Y}}'"
-4,Demographic Details,Primary Mobile number,1,"field,self,ama_krushi,OTP,ppas",1,1,"SELECT 
-`t_farmer_info`.`vch_aadharno`,
-`t_farmer_info`.`int_krushk_id`,
-
-CASE 
-WHEN   `t_farmer_info`.tin_farmer_action = 2
-     AND td.tin_old_application_status = 0
-     AND td.tin_farmerdb_status = 1
-     THEN td.int_primary_mobile_number ELSE NULL END AS field,
-     
-     
-CASE 
-WHEN (`t_farmer_info`.tin_farmer_action = 1 OR(`t_farmer_info`.tin_farmer_action = 2 AND td.tin_old_application_status IN(2,3)))
- AND `t_farmer_info`.int_kyc_verify = 1
- AND td.tin_farmerdb_status = 1 
- AND td.tin_consent_status = 1
- AND DATE(td.dtm_consent_date) > ""2022-05-03"" 
- THEN  td.int_primary_mobile_number ELSE NULL END AS self,
-
-
-CASE WHEN ama_krushi.number  IS NOT NULL THEN  td.int_primary_mobile_number
-        ELSE NULL 
-END AS ama_krushi,
-`ppas_dump_data`.`Mobile_No` as ppas,
-`mpas_dump_data`.`Mobile No` as mpas
-
-FROM `t_farmer_info`
-
-INNER JOIN t_demographic_details td 
-ON td.vch_application_no = `t_farmer_info`.vch_application_no AND td.int_krushk_id = `t_farmer_info`.int_krushk_id
-
-LEFT JOIN (SELECT DISTINCT ama_krushi.number FROM  ama_krushi) as ama_krushi
-ON td.int_primary_mobile_number = ama_krushi.number
-
-
-LEFT JOIN (SELECT DISTINCT `Mobile_No`,`AADHAARNO` FROM `ppas_dump_data`
-          WHERE `Mobile_No` IS NOT NULL 
-                  AND `AADHAARNO` BETWEEN '{{X}}' AND '{{Y}}'
-          ) as `ppas_dump_data`
-ON  `t_farmer_info`.`vch_aadharno`=`ppas_dump_data`.`AADHAARNO`
-
-LEFT JOIN (SELECT DISTINCT `Mobile No`,`Aadhar_No. of farmer` FROM `mpas_dump_data` WHERE 
- `Mobile No`  IS NOT NULL
- AND LENGTH(`Mobile No`) > 0 
- AND `Aadhar_No. of farmer` BETWEEN '{{X}}' AND '{{Y}}') mpas_dump_data
-ON  `t_farmer_info`.`vch_aadharno`=`mpas_dump_data`.`Aadhar_No. of farmer`
-
-WHERE t_farmer_info.`vch_aadharno` <> '999999999999'
-AND td.int_primary_mobile_number IS NOT NULL 
-AND t_farmer_info.`vch_aadharno` BETWEEN '{{X}}' AND '{{Y}}'"
-5,Demographic Details,Farmer Type,1,"field,self,ppas,mpas",1,1,"SELECT int_krushk_id,vch_aadharno,
+4,Demographic Details,Farmer Type,1,"field,self,ppas,mpas",1,1,"SELECT int_krushk_id,vch_aadharno,
 CASE WHEN (field/2.47) >= 10    THEN 6        
 WHEN (field/2.47) >= 4    THEN 5
 WHEN (field/2.47) >= 2    THEN 4        
@@ -277,7 +227,7 @@ SUM(CASE
          AND t_farmer_info.int_kyc_verify = 1
          AND td.tin_farmerdb_status = 1 
          AND td.tin_consent_status = 1
-         AND DATE(td.dtm_consent_date) > ""2022-05-03""   
+         AND DATE(td.dtm_consent_date) > '2022-05-03'  
          THEN  ROUND(`t_cropping_land_details`.`float_landholding_size`,1) ELSE NULL END 
 )AS self,
 
@@ -318,7 +268,7 @@ GROUP BY `t_cropping_land_details`.`vch_aadharno`, `t_cropping_land_details`.`in
 
 
 ) base"
-6,Residential Address,District,1,"field,self,mpas",1,1,"SELECT t_demographic_details.`int_krushk_id`,
+5,Residential Address,District,1,"field,self,mpas",1,1,"SELECT t_demographic_details.`int_krushk_id`,
 t_demographic_details.`vch_aadharno`,
 
 
@@ -334,7 +284,7 @@ WHEN (t_farmer_info.tin_farmer_action = 1 OR(t_farmer_info.tin_farmer_action = 2
  AND t_farmer_info.int_kyc_verify = 1
  AND `t_demographic_details`.tin_farmerdb_status = 1 
  AND `t_demographic_details`.tin_consent_status = 1
- AND DATE(`t_demographic_details`.dtm_consent_date) > ""2022-05-03"" 
+ AND DATE(`t_demographic_details`.dtm_consent_date) > '2022-05-03'
  THEN  lower(m_district.vch_district_name) ELSE NULL END AS self,
 
 
@@ -362,7 +312,7 @@ WHERE `t_demographic_details`.`vch_district` IS NOT NULL
 AND `t_demographic_details`.`vch_aadharno` IS NOT NULL
 AND  `m_district`.`vch_district_name` IS NOT NULL
 AND `t_demographic_details`.`vch_aadharno` BETWEEN '{{X}}' AND '{{Y}}'"
-7,Residential Address,"Block,NAC,ULB",1,"field,self,mpas,nfsa",1,1,"SELECT DISTINCT t_demographic_details.`int_krushk_id`,
+6,Residential Address,"Block,NAC,ULB",1,"field,self,mpas,nfsa",1,1,"SELECT DISTINCT t_demographic_details.`int_krushk_id`,
 t_demographic_details.`vch_aadharno`,
 
 
@@ -378,7 +328,7 @@ WHEN (t_farmer_info.tin_farmer_action = 1 OR(t_farmer_info.tin_farmer_action = 2
  AND t_farmer_info.int_kyc_verify = 1
  AND `t_demographic_details`.tin_farmerdb_status = 1 
  AND `t_demographic_details`.tin_consent_status = 1
- AND DATE(`t_demographic_details`.dtm_consent_date) > ""2022-05-03"" 
+ AND DATE(`t_demographic_details`.dtm_consent_date) > '2022-05-03'
  THEN  lower(`m_block`.`vch_block_name`) ELSE NULL END AS self,
  
 
@@ -404,7 +354,7 @@ WHERE `t_demographic_details`.`vch_block_ulb` IS NOT NULL
 AND `t_demographic_details`.`vch_aadharno` IS NOT NULL
 AND  `m_block`.`vch_block_name` IS NOT NULL
 AND `t_demographic_details`.`vch_aadharno` BETWEEN '{{X}}' AND '{{Y}}'"
-8,Residential Address,"Gram Panchayat,Ward",1,"field,self,mpas,nfsa",1,1,"SELECT DISTINCT t_demographic_details.`int_krushk_id`,
+7,Residential Address,"Gram Panchayat,Ward",1,"field,self,mpas,nfsa",1,1,"SELECT DISTINCT t_demographic_details.`int_krushk_id`,
 t_demographic_details.`vch_aadharno`,
 
 
@@ -420,7 +370,7 @@ WHEN (t_farmer_info.tin_farmer_action = 1 OR(t_farmer_info.tin_farmer_action = 2
  AND t_farmer_info.int_kyc_verify = 1
  AND `t_demographic_details`.tin_farmerdb_status = 1 
  AND `t_demographic_details`.tin_consent_status = 1
- AND DATE(`t_demographic_details`.dtm_consent_date) > ""2022-05-03"" 
+ AND DATE(`t_demographic_details`.dtm_consent_date) > '2022-05-03'
  THEN  lower(`m_gp_ward`.`vch_gp_ward`) ELSE NULL END AS self,
 
 
@@ -449,7 +399,7 @@ WHERE `t_demographic_details`.`vch_gp_ward` IS NOT NULL
 AND `t_demographic_details`.`vch_aadharno` IS NOT NULL
 AND  `m_gp_ward`.`vch_gp_ward` IS NOT NULL
 AND `t_demographic_details`.`vch_aadharno` BETWEEN '{{X}}' AND '{{Y}}'"
-9,Residential Address,Village,1,"field,self,mpas,nfsa,ppas",1,1,"SELECT DISTINCT t_demographic_details.`int_krushk_id`,
+8,Residential Address,Village,1,"field,self,mpas,nfsa",1,1,"SELECT DISTINCT t_demographic_details.`int_krushk_id`,
 t_demographic_details.`vch_aadharno`,
 
 
@@ -465,7 +415,7 @@ WHEN (t_farmer_info.tin_farmer_action = 1 OR(t_farmer_info.tin_farmer_action = 2
  AND t_farmer_info.int_kyc_verify = 1
  AND `t_demographic_details`.tin_farmerdb_status = 1 
  AND `t_demographic_details`.tin_consent_status = 1
- AND DATE(`t_demographic_details`.dtm_consent_date) > ""2022-05-03"" 
+ AND DATE(`t_demographic_details`.dtm_consent_date) > '2022-05-03'
  THEN  lower(m_village.`vch_village`) ELSE NULL END AS self,
 
 
@@ -493,69 +443,7 @@ WHERE t_demographic_details.`vch_village` IS NOT NULL
 AND `t_demographic_details`.`vch_aadharno` IS NOT NULL
 AND  m_village.`vch_village` IS NOT NULL 
 AND `t_demographic_details`.`vch_aadharno` BETWEEN '{{X}}' AND '{{Y}}'"
-10,Crop Production Details,District,1,"field,self,ppas",1,1,"SELECT  
-`t_cropping_land_details`.`int_krushk_id`,
-`t_cropping_land_details`.`vch_aadharno`,
-`t_cropping_land_details`.`vch_district`,
-`t_cropping_land_details`.`vch_tahsil`,
-`t_cropping_land_details`.`vch_revenue_circle`,
-`t_cropping_land_details`.`vch_village`,
-`t_cropping_land_details`.`vch_khata_no`,
-`t_cropping_land_details`.`vch_plot_no`,
-
-CASE 
-WHEN   tf.tin_farmer_action = 2
-     AND td.tin_old_application_status = 0
-     AND td.tin_farmerdb_status = 1 
-THEN 
-        LOWER(CONCAT_WS('-', `t_cropping_land_details`.`vch_district`, `t_cropping_land_details`.`vch_tahsil`,
-        `t_cropping_land_details`.`vch_revenue_circle`, `t_cropping_land_details`.`vch_village`, `t_cropping_land_details`.`vch_khata_no`, 
-        `t_cropping_land_details`.`vch_plot_no` ) )
-ELSE NULL END 
-AS field,
-     
-CASE 
-WHEN (tf.tin_farmer_action = 1 OR(tf.tin_farmer_action = 2 AND td.tin_old_application_status IN(2,3)))
-        AND tf.int_kyc_verify = 1
-        AND td.tin_farmerdb_status = 1 
-        AND td.tin_consent_status = 1
-        AND DATE(td.dtm_consent_date) > ""2022-05-03"" 
-THEN
-        LOWER(CONCAT_WS('-', `t_cropping_land_details`.`vch_district`, `t_cropping_land_details`.`vch_tahsil`,
-        `t_cropping_land_details`.`vch_revenue_circle`, `t_cropping_land_details`.`vch_village`, `t_cropping_land_details`.`vch_khata_no`,
-        `t_cropping_land_details`.`vch_plot_no` ) )
-ELSE NULL  END 
-AS self,
-
-LOWER(CONCAT_WS('-', `ppas_dump_data`.`DistrictID`, `ppas_dump_data`.`TahasilID`, `ppas_dump_data`.`INTRIID`, `ppas_dump_data`.`VillageCode`, `ppas_dump_data`.`KhataNo`, `ppas_dump_data`.`PlotNo`)) AS ppas
-
-
-
-FROM `t_cropping_land_details` 
-
-
-INNER JOIN t_farmer_info tf
-ON `t_cropping_land_details`.`int_krushk_id` = tf.`int_krushk_id`
-
-INNER JOIN t_demographic_details td 
-ON td.vch_application_no = tf.vch_application_no AND td.int_krushk_id = tf.int_krushk_id
-
-
-INNER JOIN 
-(SELECT `DistrictID`, `TahasilID`, `INTRIID`, `VillageCode`, `PlotNo`,`KhataNo`,`AADHAARNO`, AVG(`Tot_Area`) as `Tot_Area`  FROM ppas_dump_data 
-WHERE `TahasilID` IS NOT NULL
-AND `AADHAARNO` BETWEEN '{{X}}' AND '{{Y}}'
-GROUP BY 1,2,3,4,5,6,7
-) ppas_dump_data
-
-ON  `t_cropping_land_details`.`vch_khata_no` = `ppas_dump_data`.`KhataNo`
-AND `t_cropping_land_details`.`vch_plot_no` = `ppas_dump_data`.`PlotNo`
-AND `t_cropping_land_details`.`vch_district` = `ppas_dump_data`.`DistrictID` 
-AND `t_cropping_land_details`.`vch_tahsil` = `ppas_dump_data`.`TahasilID`
-AND `t_cropping_land_details`.`vch_revenue_circle` = `ppas_dump_data`.`INTRIID`
-AND `t_cropping_land_details`.`vch_village` = `ppas_dump_data`.`VillageCode`
-WHERE `t_cropping_land_details`.`vch_aadharno` BETWEEN '{{X}}' AND '{{Y}}'   AND  `t_cropping_land_details`.tin_bhulekh_verified = 1 "
-11,Crop Production Details,Landholding Size (Acres),0,"field,self",1,1,"SELECT DISTINCT `t_cropping_land_details`.`int_krushk_id`,
+9,Crop Production Details,Landholding Size (Acres),0,"field,self,ppas",1,1,"SELECT DISTINCT `t_cropping_land_details`.`int_krushk_id`,
 `t_cropping_land_details`.`vch_aadharno`,
 `t_cropping_land_details`.`vch_district`, 
 `t_cropping_land_details`.`vch_tahsil`,
@@ -578,7 +466,7 @@ WHEN (tf.tin_farmer_action = 1 OR(tf.tin_farmer_action = 2 AND td.tin_old_applic
  AND tf.int_kyc_verify = 1
  AND td.tin_farmerdb_status = 1 
  AND td.tin_consent_status = 1
- AND DATE(td.dtm_consent_date) > ""2022-05-03"" 
+ AND DATE(td.dtm_consent_date) > '2022-05-03'
    THEN  ROUND(`t_cropping_land_details`.`float_landholding_share`,1)
 ELSE NULL 
 END AS self,
@@ -613,7 +501,7 @@ AND `t_cropping_land_details`.`vch_village` = `ppas_dump_data`.`VillageCode`
 WHERE `t_cropping_land_details`.vch_district IS NOT NULL
 AND `t_cropping_land_details`.tin_bhulekh_verified = 1
 AND `t_cropping_land_details`.`vch_aadharno` BETWEEN '{{X}}' AND '{{Y}}'"
-12,Crop Production Details,Farmer Area under Cultivation (Acres),1,"field,self,mpas,ppas",1,1,"SELECT DISTINCT `t_cropping_land_details`.`int_krushk_id`,
+10,Crop Production Details,Farmer Area under Cultivation (Acres),1,"field,self,ppas",1,1,"SELECT DISTINCT `t_cropping_land_details`.`int_krushk_id`,
 `t_cropping_land_details`.`vch_aadharno`,
 `t_cropping_land_details`.`vch_district`, 
 `t_cropping_land_details`.`vch_tahsil`,
@@ -636,7 +524,7 @@ WHEN (tf.tin_farmer_action = 1 OR(tf.tin_farmer_action = 2 AND td.tin_old_applic
  AND tf.int_kyc_verify = 1
  AND td.tin_farmerdb_status = 1 
  AND td.tin_consent_status = 1
- AND DATE(td.dtm_consent_date) > ""2022-05-03"" 
+ AND DATE(td.dtm_consent_date) > '2022-05-03'
    THEN  ROUND(`t_cropping_land_details`.`float_landholding_size`,1)
 ELSE NULL 
 END AS self,
@@ -672,53 +560,107 @@ AND `t_cropping_land_details`.`vch_village` = `ppas_dump_data`.`VillageCode`
 
 WHERE `t_cropping_land_details`.vch_district IS NOT NULL
 AND  `t_cropping_land_details`.tin_bhulekh_verified = 1  AND `t_cropping_land_details`.`vch_aadharno` BETWEEN '{{X}}' AND '{{Y}}'"
-13,Crop Production Details,Access to Irrigation,0,"field,self,ama_krushi",1,1,"SELECT DISTINCT `t_cropping_land_details`.`int_krushk_id`,
+11,Demographic Details,Primary Mobile number,1,"field,self,ppas",1,1,"SELECT 
+`t_farmer_info`.`vch_aadharno`,
+`t_farmer_info`.`int_krushk_id`,
+
+CASE 
+WHEN   `t_farmer_info`.tin_farmer_action = 2
+     AND td.tin_old_application_status = 0
+     AND td.tin_farmerdb_status = 1
+     THEN td.int_primary_mobile_number ELSE NULL END AS field,
+     
+     
+CASE 
+WHEN (`t_farmer_info`.tin_farmer_action = 1 OR(`t_farmer_info`.tin_farmer_action = 2 AND td.tin_old_application_status IN(2,3)))
+ AND `t_farmer_info`.int_kyc_verify = 1
+ AND td.tin_farmerdb_status = 1 
+ AND td.tin_consent_status = 1
+ AND DATE(td.dtm_consent_date) > '2022-05-03'
+ THEN  td.int_primary_mobile_number ELSE NULL END AS self,
+`ppas_dump_data`.`Mobile_No` as ppas,
+`mpas_dump_data`.`Mobile No` as mpas
+
+FROM `t_farmer_info`
+
+INNER JOIN t_demographic_details td 
+ON td.vch_application_no = `t_farmer_info`.vch_application_no AND td.int_krushk_id = `t_farmer_info`.int_krushk_id
+
+LEFT JOIN (SELECT DISTINCT `Mobile_No`,`AADHAARNO` FROM `ppas_dump_data`
+          WHERE `Mobile_No` IS NOT NULL 
+                  AND `AADHAARNO` BETWEEN '{{X}}' AND '{{Y}}'
+          ) as `ppas_dump_data`
+ON  `t_farmer_info`.`vch_aadharno`=`ppas_dump_data`.`AADHAARNO`
+
+LEFT JOIN (SELECT DISTINCT `Mobile No`,`Aadhar_No. of farmer` FROM `mpas_dump_data` WHERE 
+ `Mobile No`  IS NOT NULL
+ AND LENGTH(`Mobile No`) > 0 
+ AND `Aadhar_No. of farmer` BETWEEN '{{X}}' AND '{{Y}}') mpas_dump_data
+ON  `t_farmer_info`.`vch_aadharno`=`mpas_dump_data`.`Aadhar_No. of farmer`
+
+WHERE t_farmer_info.`vch_aadharno` <> '999999999999'
+AND td.int_primary_mobile_number IS NOT NULL 
+AND t_farmer_info.`vch_aadharno` BETWEEN '{{X}}' AND '{{Y}}'"
+12,Crop Production Details,District,1,"field,self,ppas",1,1,"SELECT  
+`t_cropping_land_details`.`int_krushk_id`,
 `t_cropping_land_details`.`vch_aadharno`,
 `t_cropping_land_details`.`vch_district`,
 `t_cropping_land_details`.`vch_tahsil`,
+`t_cropping_land_details`.`vch_revenue_circle`,
 `t_cropping_land_details`.`vch_village`,
 `t_cropping_land_details`.`vch_khata_no`,
 `t_cropping_land_details`.`vch_plot_no`,
 
-
-
-
 CASE 
-WHEN   t_farmer_info.tin_farmer_action = 2
+WHEN   tf.tin_farmer_action = 2
      AND td.tin_old_application_status = 0
-     AND td.tin_farmerdb_status = 1
-     THEN  `t_cropping_land_details`.`int_access_to_irrigation`
-ELSE NULL 
-END AS field  ,
-     
+     AND td.tin_farmerdb_status = 1 
+THEN 
+        LOWER(CONCAT_WS('-', `t_cropping_land_details`.`vch_district`, `t_cropping_land_details`.`vch_tahsil`,
+        `t_cropping_land_details`.`vch_revenue_circle`, `t_cropping_land_details`.`vch_village`, `t_cropping_land_details`.`vch_khata_no`, 
+        `t_cropping_land_details`.`vch_plot_no` ) )
+ELSE NULL END 
+AS field,
      
 CASE 
-WHEN (t_farmer_info.tin_farmer_action = 1 OR(t_farmer_info.tin_farmer_action = 2 AND td.tin_old_application_status IN(2,3)))
- AND t_farmer_info.int_kyc_verify = 1
- AND td.tin_farmerdb_status = 1 
- AND td.tin_consent_status = 1
- AND DATE(td.dtm_consent_date) > ""2022-05-03"" 
-   THEN  `t_cropping_land_details`.`int_access_to_irrigation`
-ELSE NULL 
-END AS self,
+WHEN (tf.tin_farmer_action = 1 OR(tf.tin_farmer_action = 2 AND td.tin_old_application_status IN(2,3)))
+        AND tf.int_kyc_verify = 1
+        AND td.tin_farmerdb_status = 1 
+        AND td.tin_consent_status = 1
+        AND DATE(td.dtm_consent_date) > '2022-05-03'
+THEN
+        LOWER(CONCAT_WS('-', `t_cropping_land_details`.`vch_district`, `t_cropping_land_details`.`vch_tahsil`,
+        `t_cropping_land_details`.`vch_revenue_circle`, `t_cropping_land_details`.`vch_village`, `t_cropping_land_details`.`vch_khata_no`,
+        `t_cropping_land_details`.`vch_plot_no` ) )
+ELSE NULL  END 
+AS self,
+
+LOWER(CONCAT_WS('-', `ppas_dump_data`.`DistrictID`, `ppas_dump_data`.`TahasilID`, `ppas_dump_data`.`INTRIID`, `ppas_dump_data`.`VillageCode`, `ppas_dump_data`.`KhataNo`, `ppas_dump_data`.`PlotNo`)) AS ppas
 
 
-`irrigation_kharif` as ama_krushi
 
 FROM `t_cropping_land_details` 
 
-INNER JOIN t_farmer_info 
-ON `t_cropping_land_details`.`int_krushk_id`
-
 
 INNER JOIN t_demographic_details td 
-ON td.vch_application_no = `t_farmer_info`.`vch_application_no` AND td.int_krushk_id = `t_farmer_info`.`int_krushk_id`
+ON td.vch_application_no = t_cropping_land_details.vch_application_no 
+AND td.int_krushk_id = t_cropping_land_details.int_krushk_id
 
+INNER JOIN t_farmer_info  tf
+ON tf.vch_application_no = td.vch_application_no 
+AND tf.int_krushk_id = td.int_krushk_id
 
+LEFT JOIN 
+(SELECT `DistrictID`, `TahasilID`, `INTRIID`, `VillageCode`, `PlotNo`,`KhataNo`,`AADHAARNO`, AVG(`Tot_Area`) as `Tot_Area`  FROM ppas_dump_data 
+WHERE `TahasilID` IS NOT NULL
+AND `AADHAARNO` BETWEEN '{{X}}' AND '{{Y}}'
+GROUP BY 1,2,3,4,5,6,7
+) ppas_dump_data
 
-LEFT JOIN  
-(SELECT DISTINCT number,`irrigation_kharif` FROM `ama_krushi` WHERE 
-`full_irrigation_kharif` IS NOT NULL)  AS ama_krushi
-ON t_farmer_info.`vch_mobile_no` = ama_krushi.number
-
-WHERE `t_cropping_land_details`.`int_access_to_irrigation` IS NOT NULL"
+ON  `t_cropping_land_details`.`vch_khata_no` = `ppas_dump_data`.`KhataNo`
+AND `t_cropping_land_details`.`vch_plot_no` = `ppas_dump_data`.`PlotNo`
+AND `t_cropping_land_details`.`vch_district` = `ppas_dump_data`.`DistrictID` 
+AND `t_cropping_land_details`.`vch_tahsil` = `ppas_dump_data`.`TahasilID`
+AND `t_cropping_land_details`.`vch_revenue_circle` = `ppas_dump_data`.`INTRIID`
+AND `t_cropping_land_details`.`vch_village` = `ppas_dump_data`.`VillageCode`
+WHERE `t_cropping_land_details`.`vch_aadharno` BETWEEN '{{X}}' AND '{{Y}}'   AND  `t_cropping_land_details`.tin_bhulekh_verified = 1 "
