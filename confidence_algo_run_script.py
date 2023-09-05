@@ -145,13 +145,11 @@ def get_final_confidence(data,list_of_cols, column_to_check_confidence,t_w ,id_c
 ## reading the table with the SQL queries for downloading necessary tables 
 codes_df = pd.read_csv(sql_repo_csv_location)
 codes_df_run = codes_df.loc[codes_df.Multiple_confidence_columns == 1,: ]
-
+#codes_df_run = codes_df.loc[range(8,13),: ]
 
 for table_no in codes_df_run.index:
     print('Table current :',  table_no , '\n')
-    string  = codes_df.loc[table_no,'SQL Code']
-    string = string.replace('\n'," ")
-    string = string.replace('\t'," ")
+    
     columns = codes_df.loc[table_no,'Columns_list']
     list_of_cols = np.array(columns.split (","))
     table_name_str  = codes_df.loc[table_no,'Parent Label']+'_'+ codes_df.loc[table_no,'Field Name']
@@ -178,4 +176,4 @@ for table_no in codes_df_run.index:
         else :
             print('Table has <= 1 row of data')
     except :
-        print('Table ',table_name_str, ' does not exist')
+        print('Table ',table_name_str, ' has an issue in columns provided')
