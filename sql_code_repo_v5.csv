@@ -443,7 +443,7 @@ WHERE t_demographic_details.`vch_village` IS NOT NULL
 AND `t_demographic_details`.`vch_aadharno` IS NOT NULL
 AND  m_village.`vch_village` IS NOT NULL 
 AND `t_demographic_details`.`vch_aadharno` BETWEEN '{{X}}' AND '{{Y}}'"
-9,Crop Production Details,Landholding Size (Acres),0,"field,self,ppas",1,1,"SELECT DISTINCT `t_cropping_land_details`.`int_krushk_id`,
+9,Crop Production Details,Landholding Size (Acres),1,"field,self,ppas",1,1,"SELECT DISTINCT `t_cropping_land_details`.`int_krushk_id`,
 `t_cropping_land_details`.`vch_aadharno`,
 `t_cropping_land_details`.`vch_district`, 
 `t_cropping_land_details`.`vch_tahsil`,
