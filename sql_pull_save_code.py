@@ -33,7 +33,8 @@ input_csv_file = config.get('FILES', 'input_csv_file')
 output_folder = config.get('FILES', 'output_folder')
 
 warnings.filterwarnings('ignore')
-logging.basicConfig(filename=log_file, level=logging.INFO, force=True)
+#logging.basicConfig(filename=log_file, level=logging.INFO, force=True)
+logging.basicConfig(filename=log_file, level=logging.INFO)
 
 
 if is_ssh_tunnel_required:
